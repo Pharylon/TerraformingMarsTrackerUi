@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MyStreamChatApp",
-    "slug": "MyStreamChatApp",
+    "name": "TerraformingMarsTracker",
+    "slug": "Terraforming Mars Tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

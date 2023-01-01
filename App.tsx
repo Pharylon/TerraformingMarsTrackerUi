@@ -1,20 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import { RecoilRoot } from 'recoil';
+import { StatusBar as StatusBarNative} from 'react-native';
+import React, { useState } from 'react';
 
 export default function App() {
+  const image = require("./assets/mars.png");
   return (
+    <RecoilRoot>
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+          {/* <Text style={styles.text}>Inside</Text> */}
+        </ImageBackground>
     </View>
+    {/* <StatusBar style="auto" /> */}
+    </RecoilRoot>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
+  image: {
+    flex: 1,
+    justifyContent: "center"
+  }
 });
