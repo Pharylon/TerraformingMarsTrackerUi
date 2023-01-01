@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { RefreshControlBase, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import styles from "../Styles"
-import {boardState, playerNumberState} from "../BoardState"
+import styles from "../../Styles"
+import {boardState, playerNumberState} from "../../state/BoardState"
 import { useRecoilState } from 'recoil';
 
 const MegaCredits = () => {
@@ -23,11 +23,11 @@ const MegaCredits = () => {
     <View style={styles.resource}>      
       <View style={styles.resourceLine}>
         <Ionicons  name="remove" size={32} color="black" />
-        <Text style={styles.resourceText}>{myBoardState?.megaCredit ?? 0}</Text>
+        <Text style={styles.resourceText}>{myBoardState?.megaCredits.amount ?? 0}</Text>
         <Ionicons name="add" size={32} color="black" />
       </View>
       <Ionicons name="logo-euro" size={32} color="gold" />
-      <Text>{myBoardState?.megaCreditProduction ?? 0}</Text>
+      <Text>{myBoardState?.megaCredits.production ?? 0}</Text>
     </View>
   )
 }

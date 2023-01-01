@@ -2,15 +2,21 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useRecoilState } from 'recoil';
 import UserName from './UserName';
 import { userState } from '../state/UserState';
+import React from 'react';
+import Board from './Board';
 
 const Main = () => {
   const [userNameState, setUserNameState] = useRecoilState(userState);
   return (
     <View style={styles.container}>
-      <View><Text style={styles.text} >{userNameState}FDKLJFLDKJ</Text></View>
-      <UserName/>
-      {/* {!userNameState && <UserName/>}
-      {!userNameState && <UserName/>} */}
+      {!userNameState && <UserName/>}
+      {
+        userNameState && 
+        <View style={styles.main}>
+          <Text style={styles.text} >{userNameState}</Text>
+          <Board/>
+        </View>
+      }
     </View>
   );
 };
@@ -23,7 +29,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 50
+    fontSize: 50,
+    marginBottom: "auto"
+  },
+  main: {
+    display: "flex",
+    height: "100%"
   }
 });
 

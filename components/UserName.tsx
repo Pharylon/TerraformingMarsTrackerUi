@@ -4,8 +4,6 @@ import {TextInput} from "@react-native-material/core";
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { userState } from '../state/UserState';
 import { useRecoilState } from 'recoil';
-import { Box } from "@react-native-material/core";
-import {} from "@react-native-material/core";
 
 
 const UserName = () => {  
@@ -34,28 +32,15 @@ const UserName = () => {
     getData();
   }, []);
 
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <Grow in={checked}>{icon}</Grow>
-      {/* Conditionally applies the timeout prop to change the entry speed. */}
-      <Grow
-        in={checked}
-        style={{ transformOrigin: '0 0 0' }}
-        {...(checked ? { timeout: 1000 } : {})}
-      >
-        {icon}
-      </Grow>
-    </Box>
-  );
 
-  // return (
-  //   <View style={styles.container} >
-  //     <Text style={styles.label}>Enter your name</Text>
-  //     <TextInput placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} >
-  //     </TextInput>
-  //     <Button title='Submit' onPress={setData}></Button>
-  //   </View>    
-  // );
+  return (
+    <View style={styles.container} >
+      <Text style={styles.label}>Enter your name</Text>
+      <TextInput placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} >
+      </TextInput>
+      <Button title='Submit' onPress={setData}></Button>
+    </View>    
+  );
 };
 
 const styles = StyleSheet.create({
