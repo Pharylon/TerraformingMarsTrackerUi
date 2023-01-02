@@ -5,14 +5,19 @@ import { userState } from '../state/UserState';
 import React, { useEffect, useState } from 'react';
 import GameBoards from './GameBoards';
 import { Icon, TabView } from '@rneui/themed';
-import {gameState, playerNumberState} from "../state/BoardState";
+import {gameStateAtom, playerNumberState} from "../state/BoardState";
+import OverlayComponent from './Options';
+import GameMenu from './GameMenu';
+import Messages from './Messages';
 
 
-const Main = () => {
+const Main = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
   const [playerNumber, setPlayerNumber] = useRecoilState(playerNumberState);
   const [userNameState, setUserNameState] = useRecoilState(userState);
   const [currentPlayerNumber, setCurrentPlayerNumber] = useState(0);
-  const [myGameState, setGameState] = useRecoilState(gameState);
+  const [gameState, setGameState] = useRecoilState(gameStateAtom);
+
+  const showGameMenu = !!userNameState && !gameState;
 
   useEffect(() => {
     setCurrentPlayerNumber(playerNumber);
@@ -21,14 +26,19 @@ const Main = () => {
   return (
     <View style={styles.container}>
       {!userNameState && <UserName/>}
-      {
-        userNameState && 
+      {showGameMenu && 
         <View style={styles.main}>
-          <Text style={styles.text} >
-            <Icon name='reorder-three-outline' type='ionicon'/>
-            {myGameState.gameCode}
-          </Text>
-          <GameBoards/>
+            <GameMenu goBack={() => props.goBack()} navigateTo={props.navigateTo} />
+        </View>}
+      {
+        !showGameMenu && 
+        <View style={styles.main}>
+          <View style={styles.child}>
+            <GameBoards/>
+          </View>
+          <View style={styles.child}>
+          <Messages/>
+          </View>
         </View>
       }
     </View>
@@ -39,16 +49,17 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     fontSize: 50,
-    color: "white"
-  },
-  text: {
     color: "white",
-    fontSize: 30,
-    marginBottom: "auto"
+    height: "100%",
+  },
+  child: {
+    flex: 1
   },
   main: {
     display: "flex",
-    height: "100%"
+    height: "100%",
+    flexDirection: "column",
+    justifyContent: "center",
   }
 });
 

@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 import { Input } from '@rneui/themed';
 
 
-const UserName = () => {  
+const UserName = (props: {close?: () => void}) => {  
   const [userNameState, setUserNameState] = useRecoilState(userState);
   const [userNameInput, setUserNameInput] = useState("");
   const getData = async () => {
@@ -14,6 +14,7 @@ const UserName = () => {
       const value = await AsyncStorage.getItem('@user_name');
       if(value !== null) {
         setUserNameState(value);
+        setUserNameInput(value);
       }
     } catch(e) {
       // error reading value
@@ -22,6 +23,9 @@ const UserName = () => {
   const setData = async () => {
     try {
       setUserNameState(userNameInput);
+      if (props.close){
+        props.close();
+      }
       await AsyncStorage.setItem('@user_name', userNameInput);
     } catch(e) {
       // error reading value
@@ -35,7 +39,7 @@ const UserName = () => {
 
   return (
     <View style={styles.container} >
-      <Text style={styles.label}>Enter your name</Text>
+      <Text style={styles.label}>{"Enter your name"}</Text>
       <Input placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} />
       <Button title='Submit' onPress={setData}></Button>
     </View>    
@@ -49,7 +53,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: 300,
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: "80%"
   },
   label: {
     color: "white",

@@ -5,13 +5,13 @@ import Heat from './resources/Heat';
 import Power from './resources/Power';
 import Titanium from './resources/Titanium';
 import Steel from './resources/Steel';
-import { IPlayerState } from '../state/BoardState';
+import { BoardState } from '../state/BoardState';
 
-const Board = (props: {playerState: IPlayerState}) => {
+const Board = (props: {playerState: BoardState, gameCode: string}) => {
 
   return (
     <View style={styles.board}>
-      <MegaCredits resource={props.playerState.megaCredits}/>
+      <MegaCredits resource={props.playerState.megaCredits} gameCode={props.gameCode}/>
       <Steel/>
       <Titanium/>
       <Greenery/>

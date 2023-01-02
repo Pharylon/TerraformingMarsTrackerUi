@@ -1,7 +1,7 @@
 import { Tab } from '@rneui/themed';
-import { IPlayer } from '../state/BoardState';
+import { Player } from '../state/BoardState';
 
-const PlayerTab = (props: { player: IPlayer }) => {
+const PlayerTab = (props: { player: Player }) => {
   return (
             <Tab.Item
         title={props.player.playerName}

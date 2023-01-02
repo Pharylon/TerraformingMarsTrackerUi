@@ -14,10 +14,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-around',
+    width: "100%"
   },
   resourceText: {
     fontSize: 32
+  },
+  pressableStyle: {
+    backgroundColor: "red",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "row"
   }
 });
 

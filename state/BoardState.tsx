@@ -1,12 +1,12 @@
 import { atom } from 'recoil';
 
-export interface IPlayerState {
-  playerId: number,
+export interface BoardState {
+  playerId: string,
   megaCredits: Resource
 }
 
-export interface IPlayer {
-  playerId: number,
+export interface Player {
+  playerId: string,
   playerName: string,
   email: string | undefined;
 }
@@ -18,52 +18,54 @@ export interface Resource {
 
 
 export interface GameState {
+  started: boolean,
   gameCode: string,
-  players: IPlayer[],
-  playerStates: IPlayerState[]
+  players: Player[],
+  boards: BoardState[],
+  messages: string[]
 }
 
-const statingState: GameState = {
-  gameCode: "ABCDEF",
-  players: [
-    {
-      playerId: 1,
-      playerName: "Zachary",
-      email: "zshuford@gmail.com"
-    },
-    {
-      playerId: 2,
-      playerName: "Shauna",
-      email: "shauna216@gmail.com"
-    },
-    {
-      playerId: 2,
-      playerName: "Lee",
-      email: "mlshuford14@gmail.com"
-    },
-    {
-      playerId: 2,
-      playerName: "Lee",
-      email: "eashuford@gmail.com"
-    }
-  ],
-  playerStates: [getEmptyGameState(1), getEmptyGameState(2)]
-}
+// const statingState: GameState = {
+//   gameCode: "ABCDEF",
+//   players: [
+//     {
+//       playerId: 1,
+//       playerName: "Zachary",
+//       email: "zshuford@gmail.com"
+//     },
+//     {
+//       playerId: 2,
+//       playerName: "Shauna",
+//       email: "shauna216@gmail.com"
+//     },
+//     {
+//       playerId: 2,
+//       playerName: "Lee",
+//       email: "mlshuford14@gmail.com"
+//     },
+//     {
+//       playerId: 2,
+//       playerName: "Lee",
+//       email: "eashuford@gmail.com"
+//     }
+//   ],
+//   playerStates: [getEmptyGameState(1), getEmptyGameState(2)]
+// }
 
 
-export function getEmptyGameState (playerId: number): IPlayerState {
+export function getEmptyGameState (playerId: string): BoardState {
   return {
     playerId,
     megaCredits: {
-      amount: playerId === 1 ? 20 : 30,
+      amount: 20,
       production: 0
     }
   }
 }
 
-export const gameState = atom<GameState>(({
+export const gameStateAtom = atom<GameState | undefined>(({
   key: 'gamestate',
-  default: statingState,
+  default: undefined,
 }))
 
 export const playerNumberState = atom<number>(({
