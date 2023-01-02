@@ -7,7 +7,8 @@ export interface IPlayerState {
 
 export interface IPlayer {
   playerId: number,
-  playerName: string
+  playerName: string,
+  email: string | undefined;
 }
 
 export interface Resource {
@@ -16,38 +17,52 @@ export interface Resource {
 }
 
 
-export interface BoardState {
+export interface GameState {
+  gameCode: string,
   players: IPlayer[],
-  currentState: IPlayerState[]
+  playerStates: IPlayerState[]
 }
 
-const statingState: BoardState = {
+const statingState: GameState = {
+  gameCode: "ABCDEF",
   players: [
     {
       playerId: 1,
-      playerName: "Zachary"
+      playerName: "Zachary",
+      email: "zshuford@gmail.com"
     },
     {
       playerId: 2,
-      playerName: "Shauna"
+      playerName: "Shauna",
+      email: "shauna216@gmail.com"
+    },
+    {
+      playerId: 2,
+      playerName: "Lee",
+      email: "mlshuford14@gmail.com"
+    },
+    {
+      playerId: 2,
+      playerName: "Lee",
+      email: "eashuford@gmail.com"
     }
   ],
-  currentState: [getStartingState(1), getStartingState(2)]
+  playerStates: [getEmptyGameState(1), getEmptyGameState(2)]
 }
 
 
-function getStartingState(playerId: number): IPlayerState{
+export function getEmptyGameState (playerId: number): IPlayerState {
   return {
     playerId,
     megaCredits: {
-      amount: 0,
+      amount: playerId === 1 ? 20 : 30,
       production: 0
     }
   }
 }
 
-export const boardState = atom<BoardState>(({
-  key: 'boardstate',
+export const gameState = atom<GameState>(({
+  key: 'gamestate',
   default: statingState,
 }))
 

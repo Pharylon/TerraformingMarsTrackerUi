@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
-import {TextInput} from "@react-native-material/core";
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { userState } from '../state/UserState';
 import { useRecoilState } from 'recoil';
+import { Input } from '@rneui/themed';
 
 
 const UserName = () => {  
@@ -13,7 +13,7 @@ const UserName = () => {
     try {
       const value = await AsyncStorage.getItem('@user_name');
       if(value !== null) {
-        setUserNameState(userNameInput);
+        setUserNameState(value);
       }
     } catch(e) {
       // error reading value
@@ -36,8 +36,7 @@ const UserName = () => {
   return (
     <View style={styles.container} >
       <Text style={styles.label}>Enter your name</Text>
-      <TextInput placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} >
-      </TextInput>
+      <Input placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} />
       <Button title='Submit' onPress={setData}></Button>
     </View>    
   );

@@ -1,15 +1,17 @@
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Greenery from "./resources/Greenery";
 import MegaCredits from './resources/MegaCredits';
 import Heat from './resources/Heat';
 import Power from './resources/Power';
 import Titanium from './resources/Titanium';
 import Steel from './resources/Steel';
+import { IPlayerState } from '../state/BoardState';
 
-const Board = () => {
+const Board = (props: {playerState: IPlayerState}) => {
+
   return (
     <View style={styles.board}>
-      <MegaCredits/>
+      <MegaCredits resource={props.playerState.megaCredits}/>
       <Steel/>
       <Titanium/>
       <Greenery/>
@@ -19,6 +21,7 @@ const Board = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   board: {
     display: "flex",
@@ -26,7 +29,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     fontSize: 50,
     color: "white",
-    marginBottom: "auto",
+    alignSelf: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "space-around"
   }
 });
 
