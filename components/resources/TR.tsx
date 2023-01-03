@@ -2,56 +2,53 @@ import { StatusBar } from 'expo-status-bar';
 import { RefreshControlBase, StyleSheet, Text, View, Vibration, Pressable } from 'react-native';
 import Ionicons, {IconProps} from '@expo/vector-icons/Ionicons';
 import styles from "../../Styles"
-import { playerNumberState, Resource } from "../../state/BoardState"
+import { BoardState, gameStateAtom, playerNumberState, Resource } from "../../state/BoardState"
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { UpdateGame } from '../../Connections/SignalR';
 import ProductionLine from './ProductionLine';
 
 
-const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: boolean, resourceName: string, iconName: IconProps.GLYPHYS, iconColor: string }) => {
+const Tr = (props: {tr: number, gameCode: string, canEdit: boolean}) => {
+  const [tr, setTr] = useState(0);
   const [timeout, setTimeout] = useState(0);
-  if (!props.resource){
-    console.error("Resource Missing!", props.resourceName)
-  }
-  const [amount, setAmount] = useState(props.resource.amount);
   useEffect(() => {
-    setAmount(props.resource.amount);
-  }, [props.resource.amount]);
+    setTr(props.tr);
+  }, [props]);
 
   useEffect(() => {
     if (timeout) {
       window.clearTimeout(timeout);
     }
     setTimeout(window.setTimeout(() => sendUpdate(), 1000));
-  }, [amount]);
+  }, [tr]);
 
   const sendUpdate = () => {
-    if (amount !== props.resource.amount) {
+    if (tr !== props.tr) {
       UpdateGame({
         gameCode: props.gameCode,
-        resource: props.resourceName,
-        adjustmentAmount: amount - props.resource.amount,
+        resource: "tr",
+        adjustmentAmount: tr - props.tr,
         production: false
       });
     }
   }
   function incrementAmount() {
-    setAmount(amount + 1);
+    setTr(tr + 1);
   }
   function incrementAmountBy10() {
-    setAmount(amount + 10);
+    setTr(tr + 10);
     Vibration.vibrate(5);
   }
   function decrementAmount() {
-    setAmount(amount - 1);
+    setTr(tr - 1);
   }
   function decrementAmountBy10() {
-    setAmount(amount - 10);
+    setTr(tr - 10);
     Vibration.vibrate(5);
   }
   return (
-    <View style={styles.resource}>
+    <View style={styles.tr}>
       <View style={styles.resourceLine}>
         {
           props.canEdit && (
@@ -60,7 +57,7 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
             </Pressable>
           )
         }
-        <Text style={styles.resourceText}>{amount}</Text>
+        <Text style={styles.resourceText}>{tr}</Text>
         {
           props.canEdit && (
             <Pressable hitSlop={20} style={styles.pressableStyle} onPress={incrementAmount} onLongPress={incrementAmountBy10} >
@@ -68,16 +65,10 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
             </Pressable>
           )
         }
-
       </View>
-      <Ionicons name={props.iconName} size={32} color={props.iconColor} />
-      <ProductionLine resource={props.resource}
-        gameCode={props.gameCode}
-        canEdit={props.canEdit}
-        resourceName={props.resourceName} />
-
+      
     </View>
   )
 }
 
-export default ResourceCard;
+export default Tr;

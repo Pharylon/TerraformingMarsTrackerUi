@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderColor: 'black',
     borderWidth: 2,
+    marginBottom: 10
   },
   resourceLine: {
     display: "flex",
@@ -38,6 +39,16 @@ const styles = StyleSheet.create({
   },
   productionText: {
     fontSize: 22
+  },
+  tr: {
+    width: "100%",
+    backgroundColor: 'rgba(245, 127, 39, 0.8)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    borderColor: 'black',
+    borderWidth: 2,
+    marginBottom: 10,
   }
 });
 

@@ -17,15 +17,12 @@ const StartGameView = (props: {goBack: () => void, navigateTo: (destination: str
 
   return (
     <View style={styles.container} >
-      {!gameState && (
-        <View style={styles.inner}>
+      <View style={styles.inner}>
           <Text style={styles.label}>{"Start a New Game."}</Text>
           <Input autoCapitalize='characters' placeholder='Game Code' style={{margin: "auto", width: "80%"}} value={gameCodeInput} onChangeText={setGameCodeInput} />
           <Button title='Create Game' onPress={startGame}></Button>
           <Text style={styles.label2}>{"Anyone with this code can join your game. Suggested Code length is 8 characters"}</Text>
         </View>
-      )
-      }
     </View>    
   );
 };

@@ -1,14 +1,15 @@
 import * as signalR from "@microsoft/signalr";
-import { GameState, gameStateAtom } from "../state/BoardState";
+import { GameState, gameStateAtom, errorMessageAtom } from "../state/BoardState";
 import { getRecoil, setRecoil } from "recoil-nexus";
 import { UpdateModel } from "../state/UpdateModel";
-import { userIdAtom } from "../state/UserState";
+import { getUserId } from "../state/UserState";
 
 const base_uri = "https://tfmtracker.azurewebsites.net";
+let userId = "";
 
 let connection = new signalR.HubConnectionBuilder()
-    // .withUrl("http://192.168.0.219:33602/tfmHub")
-    .withUrl(base_uri + "/tfmHub")
+    .withUrl("http://192.168.0.219:33602/tfmHub")
+    // .withUrl(base_uri + "/tfmHub")
     .withAutomaticReconnect()
     .configureLogging(signalR.LogLevel.Information)
     .build();
@@ -21,17 +22,19 @@ connection.on("send", data => {
 });
 
 connection.on("gameupdate", data => {
-    console.log("GameUpdate", data);
+    console.log("GameUpdate", JSON.stringify(data));
     setRecoil(gameStateAtom, data)
 });
 
-connection.on("playerid", data => {
-    console.log("playerid", data);
-    setRecoil(userIdAtom, data)
+connection.on("errormessage", data => {
+    console.log("errormessage", data);
+    setRecoil(errorMessageAtom, data)
 });
 
 
-async function StartHub(){
+async function Initalize(){
+    userId = await getUserId();
+    console.log("UserID", userId);
     console.log("Conneting to Hub");
     try{
         await connection.start();
@@ -44,16 +47,24 @@ async function StartHub(){
     }
 }
 
-StartHub();
+Initalize();
 
 export async function StartGame(gameCode: string, userName: string){
-    await connection.invoke("StartGame", gameCode, userName);
+    await connection.invoke("StartGame", gameCode, userName, userId);
 }
 
 export async function JoinGame(gameCode: string, userName: string){
-    await connection.invoke("JoinGame", gameCode, userName);
+    await connection.invoke("JoinGame", gameCode, userName, userId);
 }
 
 export function UpdateGame(gameState: UpdateModel){
-    connection.invoke("UpdateGame", gameState);
+    connection.invoke("UpdateGame", gameState, userId);
+}
+
+export function Ready(gameCode: string){
+    connection.invoke("Ready", gameCode, userId);
+}
+
+export function ReadyToProduce(gameCode: string){
+    connection.invoke("ReadyToProduce", gameCode, userId);
 }

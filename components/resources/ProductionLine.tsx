@@ -22,7 +22,6 @@ const ProductionLine = (props: { resource: Resource, gameCode: string, canEdit: 
   }, [amount]);
 
   const sendUpdate = () => {
-    console.log("Sending Update", amount)
     if (amount !== props.resource.production) {
       UpdateGame({
         gameCode: props.gameCode,

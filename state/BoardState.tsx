@@ -1,19 +1,20 @@
 import { atom } from 'recoil';
 
 export interface BoardState {
-  playerId: string,
   megaCredits: Resource
   steel: Resource
   titanium: Resource
   plants: Resource
   energy: Resource
   heat: Resource
+  terraformRating: number
+  player: Player
 }
 
 export interface Player {
   playerId: string,
   playerName: string,
-  email: string | undefined;
+  readyToProduce: boolean;
 }
 
 export interface Resource {
@@ -25,42 +26,18 @@ export interface Resource {
 export interface GameState {
   started: boolean,
   gameCode: string,
-  players: Player[],
   boards: BoardState[],
   messages: string[]
 }
 
-// const statingState: GameState = {
-//   gameCode: "ABCDEF",
-//   players: [
-//     {
-//       playerId: 1,
-//       playerName: "Zachary",
-//       email: "zshuford@gmail.com"
-//     },
-//     {
-//       playerId: 2,
-//       playerName: "Shauna",
-//       email: "shauna216@gmail.com"
-//     },
-//     {
-//       playerId: 2,
-//       playerName: "Lee",
-//       email: "mlshuford14@gmail.com"
-//     },
-//     {
-//       playerId: 2,
-//       playerName: "Lee",
-//       email: "eashuford@gmail.com"
-//     }
-//   ],
-//   playerStates: [getEmptyGameState(1), getEmptyGameState(2)]
-// }
-
 
 export function getEmptyGameState (playerId: string): BoardState {
   return {
-    playerId,
+    player: {
+      playerId: "",
+      playerName: "",
+      readyToProduce: false,
+    },
     megaCredits: {
       amount: 20,
       production: 0
@@ -85,6 +62,7 @@ export function getEmptyGameState (playerId: string): BoardState {
       amount: 0,
       production: 0
     },
+    terraformRating: 0
   }
 }
 
@@ -96,4 +74,9 @@ export const gameStateAtom = atom<GameState | undefined>(({
 export const playerNumberState = atom<number>(({
   key: 'playerNumberState',
   default: 1,
+}))
+
+export const errorMessageAtom = atom<string>(({
+  key: 'errorMessageAtom',
+  default: "",
 }))

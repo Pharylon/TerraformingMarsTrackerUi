@@ -16,15 +16,12 @@ const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: stri
   }
   return (
     <View style={styles.container} >
-      {!gameState && (
-        <View style={styles.inner}>
+      <View style={styles.inner}>
           <Text style={styles.label}>{"Join A Game."}</Text>
           <Input autoCapitalize='characters' placeholder='Game Code' style={{margin: "auto", width: "80%"}} value={gameCodeInput} onChangeText={setGameCodeInput} />
           <Button title='Join Game' onPress={joinGame}></Button>
           <Text style={styles.label2}>{"Join a game created by someone else"}</Text>
         </View>
-      )
-      }
     </View>    
   );
 };

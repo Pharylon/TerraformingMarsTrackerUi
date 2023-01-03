@@ -39,9 +39,11 @@ const UserName = (props: {close?: () => void}) => {
 
   return (
     <View style={styles.container} >
-      <Text style={styles.label}>{"Enter your name"}</Text>
-      <Input placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} />
-      <Button title='Submit' onPress={setData}></Button>
+      <View style={styles.child}>
+        <Text style={styles.label}>{"Enter your name"}</Text>
+        <Input placeholder='Name' style={{margin: "auto", width: "80%"}} value={userNameInput} onChangeText={setUserNameInput} />
+        <Button title='Submit' onPress={setData}></Button>
+      </View>
     </View>    
   );
 };
@@ -54,7 +56,11 @@ const styles = StyleSheet.create({
     height: 300,
     alignItems: "center",
     justifyContent: 'center',
-    width: "80%"
+    width: "100%",
+  },
+  child: {
+    width: "80%",
+    
   },
   label: {
     color: "white",

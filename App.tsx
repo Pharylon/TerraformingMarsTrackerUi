@@ -17,6 +17,7 @@ import GameMenu from './components/GameMenu';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import JoinGameView from './components/JoinGameView';
 import TabTest from './components/TabTest';
+import ErrorOverlay from './components/ErrorOverlay';
 
 
 const image = require("./assets/mars.png");
@@ -130,12 +131,12 @@ export default function App() {
               headerLeft: props => <Ionicons name="reorder-three-outline" size={40} color="white" onPress={navigation.toggleDrawer} />,
             })} >
               <Drawer.Screen name="Game" component={HomeScreen} />
-              <Drawer.Screen name="Notifications" component={NotificationsScreen} />
               <Drawer.Screen name="Set User Name" component={UserNameNavigation} />
               <Drawer.Screen name="Game Menu" component={GameMenuNav} />
               <Drawer.Screen options={{drawerItemStyle: {display: "none"}}} name="Start Game" component={StartGameNav} />
               <Drawer.Screen options={{drawerItemStyle: {display: "none"}}} name="Join Game" component={JoinGameNav} />
             </Drawer.Navigator>
+            <ErrorOverlay/>
             <StatusBar backgroundColor='black' style="light" />
           </NavigationContainer>
         </ThemeProvider>

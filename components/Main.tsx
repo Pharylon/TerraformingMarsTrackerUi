@@ -6,11 +6,13 @@ import React, { useEffect, useState } from 'react';
 import GameBoards from './GameBoards';
 import { Icon, TabView } from '@rneui/themed';
 import {gameStateAtom, playerNumberState} from "../state/BoardState";
-import OverlayComponent from './Options';
+import ErrorOverlay from './ErrorOverlay';
 import GameMenu from './GameMenu';
 import Messages from './Messages';
 import Board from './Board';
 import TabTest from './TabTest';
+import { Button } from '@rneui/base';
+import { Ready } from '../Connections/SignalR';
 
 
 const Main = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
@@ -41,6 +43,7 @@ const Main = (props: {goBack: () => void, navigateTo: (destination: string) => v
           <View><Messages/></View>
         )
       }
+                  
     </View>
   );
 
@@ -58,6 +61,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+  },
+  buttonView: {
   }
 });
 
