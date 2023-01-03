@@ -3,6 +3,11 @@ import { atom } from 'recoil';
 export interface BoardState {
   playerId: string,
   megaCredits: Resource
+  steel: Resource
+  titanium: Resource
+  plants: Resource
+  energy: Resource
+  heat: Resource
 }
 
 export interface Player {
@@ -59,7 +64,27 @@ export function getEmptyGameState (playerId: string): BoardState {
     megaCredits: {
       amount: 20,
       production: 0
-    }
+    },
+    steel: {
+      amount: 0,
+      production: 0
+    },
+    titanium: {
+      amount: 0,
+      production: 0
+    },
+    energy: {
+      amount: 0,
+      production: 0
+    },
+    heat: {
+      amount: 0,
+      production: 0
+    },
+    plants: {
+      amount: 0,
+      production: 0
+    },
   }
 }
 

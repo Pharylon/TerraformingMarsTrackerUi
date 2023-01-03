@@ -5,3 +5,8 @@ export const userState = atom<string>(({
   default: "",
 }))
 
+
+export const userIdAtom = atom<string>(({
+  key: 'userId',
+  default: "",
+}))

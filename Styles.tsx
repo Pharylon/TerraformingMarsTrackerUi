@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 const styles = StyleSheet.create({
   resource: {
     width: "40%",
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
@@ -18,13 +18,26 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   resourceText: {
-    fontSize: 32
+    fontSize: 32,
+    color: "black"
   },
   pressableStyle: {
-    backgroundColor: "red",
     display: "flex",
     justifyContent: "center",
+    flexDirection: "row",
+  },
+  inoniconStyle: {
+    color: "black"
+  },
+  production: {
+    backgroundColor: "rgba(255, 88, 0, 1)",
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
     flexDirection: "row"
+  },
+  productionText: {
+    fontSize: 22
   }
 });
 

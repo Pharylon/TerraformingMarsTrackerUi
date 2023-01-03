@@ -9,6 +9,8 @@ import {gameStateAtom, playerNumberState} from "../state/BoardState";
 import OverlayComponent from './Options';
 import GameMenu from './GameMenu';
 import Messages from './Messages';
+import Board from './Board';
+import TabTest from './TabTest';
 
 
 const Main = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
@@ -22,44 +24,40 @@ const Main = (props: {goBack: () => void, navigateTo: (destination: string) => v
   useEffect(() => {
     setCurrentPlayerNumber(playerNumber);
   }, [playerNumber]);
-
-  return (
+  
+  return(
     <View style={styles.container}>
       {!userNameState && <UserName/>}
-      {showGameMenu && 
-        <View style={styles.main}>
-            <GameMenu goBack={() => props.goBack()} navigateTo={props.navigateTo} />
-        </View>}
       {
-        !showGameMenu && 
-        <View style={styles.main}>
-          <View style={styles.child}>
-            <GameBoards/>
-          </View>
-          <View style={styles.child}>
-          <Messages/>
-          </View>
-        </View>
+        showGameMenu && <GameMenu goBack={() => props.goBack()} navigateTo={props.navigateTo} />
+      }
+      {
+        !showGameMenu && (
+          <GameBoards/>
+        )
+      }
+      {
+        !showGameMenu && (
+          <View><Messages/></View>
+        )
       }
     </View>
   );
+
 };
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    fontSize: 50,
-    color: "white",
     height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around"
   },
-  child: {
-    flex: 1
-  },
+  child: {},
   main: {
     display: "flex",
-    height: "100%",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-between",
   }
 });
 

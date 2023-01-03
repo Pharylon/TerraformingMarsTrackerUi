@@ -10,8 +10,9 @@ const StartGameView = (props: {goBack: () => void, navigateTo: (destination: str
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
   const [userName, setUserName] = useRecoilState(userState);
   const [gameCodeInput, setGameCodeInput] = useState("");
-  function startGame(){
-    StartGame(gameCodeInput, userName);
+  async function startGame(){
+    await StartGame(gameCodeInput, userName);
+    props.navigateTo("Game");
   }
 
   return (

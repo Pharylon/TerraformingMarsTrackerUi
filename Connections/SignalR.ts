@@ -2,11 +2,13 @@ import * as signalR from "@microsoft/signalr";
 import { GameState, gameStateAtom } from "../state/BoardState";
 import { getRecoil, setRecoil } from "recoil-nexus";
 import { UpdateModel } from "../state/UpdateModel";
+import { userIdAtom } from "../state/UserState";
 
-const base_uri = "http://localhost:5045";
+const base_uri = "https://tfmtracker.azurewebsites.net";
 
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("http://192.168.0.219:33602/tfmHub")
+    // .withUrl("http://192.168.0.219:33602/tfmHub")
+    .withUrl(base_uri + "/tfmHub")
     .withAutomaticReconnect()
     .configureLogging(signalR.LogLevel.Information)
     .build();
@@ -23,6 +25,10 @@ connection.on("gameupdate", data => {
     setRecoil(gameStateAtom, data)
 });
 
+connection.on("playerid", data => {
+    console.log("playerid", data);
+    setRecoil(userIdAtom, data)
+});
 
 
 async function StartHub(){
@@ -40,8 +46,12 @@ async function StartHub(){
 
 StartHub();
 
-export function StartGame(gameCode: string, userName: string){
-    connection.invoke("StartGame", gameCode, userName);
+export async function StartGame(gameCode: string, userName: string){
+    await connection.invoke("StartGame", gameCode, userName);
+}
+
+export async function JoinGame(gameCode: string, userName: string){
+    await connection.invoke("JoinGame", gameCode, userName);
 }
 
 export function UpdateGame(gameState: UpdateModel){

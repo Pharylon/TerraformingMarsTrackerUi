@@ -2,22 +2,29 @@ import { Button, Input } from '@rneui/themed';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useRecoilState } from 'recoil';
-import { StartGame } from '../Connections/SignalR';
+import { JoinGame, StartGame } from '../Connections/SignalR';
 import { gameStateAtom } from '../state/BoardState';
 import { userState } from '../state/UserState';
 
-const GameMenu = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
+const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
   const [userName, setUserName] = useRecoilState(userState);
   const [gameCodeInput, setGameCodeInput] = useState("");
-  function startGame(){
-    StartGame(gameCodeInput, userName);
+  async function joinGame(){
+    await JoinGame(gameCodeInput, userName);
+    props.navigateTo("Game");
   }
-
   return (
     <View style={styles.container} >
-      <Button title={"Start Game"} onPress={() => props.navigateTo("Start Game")}/>
-      <Button title={"Join Game"} onPress={() => props.navigateTo("Join Game")}/>
+      {!gameState && (
+        <View style={styles.inner}>
+          <Text style={styles.label}>{"Join A Game."}</Text>
+          <Input autoCapitalize='characters' placeholder='Game Code' style={{margin: "auto", width: "80%"}} value={gameCodeInput} onChangeText={setGameCodeInput} />
+          <Button title='Join Game' onPress={joinGame}></Button>
+          <Text style={styles.label2}>{"Join a game created by someone else"}</Text>
+        </View>
+      )
+      }
     </View>    
   );
 };
@@ -29,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: 300,
     alignItems: "center",
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   inner: {
     margin: "auto",
@@ -47,4 +54,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default GameMenu;
+export default JoinGameView;

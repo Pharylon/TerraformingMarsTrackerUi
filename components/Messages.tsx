@@ -19,8 +19,8 @@ const Messages = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
-    maxHeight: 200,
+    minHeight: 50,
+    maxHeight: 150,
     backgroundColor: "rgba(0, 0, 0, 0.6)",
   },
   text: {
