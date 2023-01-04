@@ -6,6 +6,7 @@ import { Ready, ReadyToProduce } from '../Connections/SignalR';
 import ProduceButton from './ProduceButton';
 import ResourceView from './resources/ResourceView';
 import { Asset, useAssets } from 'expo-asset';
+import { useState } from 'react';
 const mc = require("../assets/MC.png");
 const steel = require("../assets/Steel.png");
 const plants = require("../assets/Plants.png");
@@ -15,7 +16,11 @@ const energy = require("../assets/Energy.png");
 
 const Board = (props: {playerState: BoardState, gameCode: string, userId: string, gameStarted: boolean}) => {
   const canEdit = props.userId === props.playerState.player.playerId;
-
+  const [readyToTart, setReadyToStart] = useState(false);
+  function readyToStart(){
+    setReadyToStart(true);
+    Ready(props.gameCode)
+  }
   return (
     <View style={styles.board}>
       <ResourceView 
@@ -76,7 +81,7 @@ const Board = (props: {playerState: BoardState, gameCode: string, userId: string
         {
           !props.gameStarted && (
                 <View>
-                  <Button onPress={() => Ready(props.gameCode)} title={"Ready To Start"}/>
+                  <Button disabled={readyToTart} onPress={() => readyToStart()} title={"Ready To Start"}/>
                 </View>
           )
         }

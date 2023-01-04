@@ -12,10 +12,12 @@ import ProductionLine from './ProductionLine';
 
 const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: boolean, resourceName: string, image: any }) => {
   const [timeout, setTimeout] = useState(0);
+  const [prodDiff, setProdDiff] = useState(0);
   if (!props.resource){
     console.error("Resource Missing!", props.resourceName)
   }
   const [amount, setAmount] = useState(props.resource.amount);
+  const diff = amount - props.resource.amount;
   useEffect(() => {
     setAmount(props.resource.amount);
   }, [props.resource.amount]);
@@ -72,7 +74,14 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
         }
 
       </View>
-      <View><Image style={{height: 50, width: 50}} source={props.image}/></View>
+      <View>
+        {/* {diff === 0 ? (
+          <Image style={{height: 50, width: 50}} source={props.image}/>
+        ) : (
+          <View><Text style={{height: 50, width: 60, fontSize: 30, overflow: "visible", zIndex: 1000, textAlign: "right"}} >{(diff > 0 ? "+"  : "") + diff}</Text></View>
+        )} */}
+        <Image style={{height: 50, width: 50}} source={props.image}/>
+        </View>
       
       <ProductionLine resource={props.resource}
         gameCode={props.gameCode}
