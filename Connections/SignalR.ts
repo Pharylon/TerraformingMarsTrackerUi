@@ -3,9 +3,10 @@ import { GameState, gameStateAtom, errorMessageAtom } from "../state/BoardState"
 import { getRecoil, setRecoil } from "recoil-nexus";
 import { UpdateModel } from "../state/UpdateModel";
 import { getUserId } from "../state/UserState";
+import Constants from "expo-constants";
 
-const base_uri = "https://tfmtracker.azurewebsites.net";
-let userId = "";
+const base_uri = Constants.expoConfig?.extra?.apiUrl || "UNKNOWN";
+console.log("Base_URI", JSON.stringify(Constants.expoConfig?.extra));
 
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("http://192.168.0.219:33602/tfmHub")

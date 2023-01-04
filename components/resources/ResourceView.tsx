@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { RefreshControlBase, StyleSheet, Text, View, Vibration, Pressable } from 'react-native';
+import { RefreshControlBase, StyleSheet, Text, View, Vibration, Pressable, Image } from 'react-native';
 import Ionicons, {IconProps} from '@expo/vector-icons/Ionicons';
 import styles from "../../Styles"
 import { playerNumberState, Resource } from "../../state/BoardState"
@@ -10,7 +10,7 @@ import ProductionLine from './ProductionLine';
 
 
 
-const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: boolean, resourceName: string, iconName: IconProps.GLYPHYS, iconColor: string }) => {
+const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: boolean, resourceName: string, image: any }) => {
   const [timeout, setTimeout] = useState(0);
   if (!props.resource){
     console.error("Resource Missing!", props.resourceName)
@@ -71,7 +71,7 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
         }
 
       </View>
-      <Ionicons name={props.iconName} size={32} color={props.iconColor} />
+      <Image style={{height: 50, width: 50}} source={props.image}/>
       <ProductionLine resource={props.resource}
         gameCode={props.gameCode}
         canEdit={props.canEdit}

@@ -1,37 +1,33 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import Greenery from "./resources/Greenery";
-import Heat from './resources/Heat';
-import Power from './resources/Power';
-import Titanium from './resources/Titanium';
-import Steel from './resources/Steel';
 import { BoardState } from '../state/BoardState';
-import { useRecoilState } from 'recoil';
 import ResourceCard from './resources/ResourceCard';
 import Tr from './resources/TR';
-import { useState } from 'react';
 import { Ready, ReadyToProduce } from '../Connections/SignalR';
 import ProduceButton from './ProduceButton';
+import ResourceView from './resources/ResourceView';
+import { Asset, useAssets } from 'expo-asset';
+const mc = require("../assets/MC.png");
+const steel = require("../assets/Steel.png");
+const plants = require("../assets/Plants.png");
 
 const Board = (props: {playerState: BoardState, gameCode: string, userId: string, gameStarted: boolean}) => {
   const canEdit = props.userId === props.playerState.player.playerId;
 
   return (
     <View style={styles.board}>
-      <ResourceCard 
+      <ResourceView 
         resource={props.playerState.megaCredits} 
         gameCode={props.gameCode} 
         canEdit={props.userId === props.playerState.player.playerId}
         resourceName="MegaCredits"
-        iconName={"logo-euro"}
-        iconColor="gold"
+        image={mc}
         />
-        <ResourceCard 
+        <ResourceView 
         resource={props.playerState.steel} 
         gameCode={props.gameCode} 
         canEdit={canEdit}
         resourceName="Steel"
-        iconName={"md-hammer"}
-        iconColor="brown"
+        image={steel}
         />
         <ResourceCard 
         resource={props.playerState.titanium } 

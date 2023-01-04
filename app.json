@@ -5,7 +5,7 @@
       "translucent": false
     },
     "name": "TerraformingMarsTracker",
-    "slug": "Terraforming Mars Tracker",
+    "slug": "terraforming-mars-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,16 +22,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pharylon.terraformingmarstracker"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.pharylon.terraformingmarstracker"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cee5d31d-61cc-4d1f-8ffd-35e54f6ce089",
+      }
     }
   }
 }

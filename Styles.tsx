@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderColor: 'black',
     borderWidth: 2,
-    marginBottom: 10
+    marginBottom: 10,
+    flexDirection: "column"
   },
   resourceLine: {
     display: "flex",
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     marginBottom: 10,
-  }
+  },
 });
 
 export default styles;
