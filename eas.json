@@ -1,25 +1,21 @@
 {
   "cli": {
-    "version": ">= 3.1.1"
+    "version": ">= 3.1.1",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "env": {
-        "API_URL": "http://192.168.0.219:33602"
-      }
+      "distribution": "internal"
     },
     "preview": {
       "distribution": "internal"
     },
     "production": {
+      "autoIncrement": true,
       "env": {
-        "API_URL": "https://tfmtracker.azurewebsites.net"
+        "API_URL": "https://tfmtracker.azurewebsites.net",
       }
     }
-  },
-  "submit": {
-    "production": {}
   }
 }
