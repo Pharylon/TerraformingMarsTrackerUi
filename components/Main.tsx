@@ -12,7 +12,7 @@ import Messages from './Messages';
 import Board from './Board';
 import TabTest from './TabTest';
 import { Button } from '@rneui/base';
-import { Ready } from '../Connections/SignalR';
+import TurnSound from "./TurnSound";
 
 
 const Main = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
@@ -43,7 +43,7 @@ const Main = (props: {goBack: () => void, navigateTo: (destination: string) => v
           <View><Messages/></View>
         )
       }
-                  
+    <TurnSound/>
     </View>
   );
 

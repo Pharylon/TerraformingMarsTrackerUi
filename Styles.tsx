@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     flexDirection: "row",    
-    marginBottom: 20
+    marginBottom: 30
   },
   resourceLine: {
     display: "flex",

@@ -8,13 +8,14 @@ export interface BoardState {
   energy: Resource
   heat: Resource
   terraformRating: number
-  player: Player
+  player: Player,
 }
 
 export interface Player {
   playerId: string,
   playerName: string,
   readyToProduce: boolean;
+  readyToStart: boolean;
 }
 
 export interface Resource {
@@ -27,7 +28,9 @@ export interface GameState {
   started: boolean,
   gameCode: string,
   boards: BoardState[],
-  messages: string[]
+  messages: string[],
+  turn: number
+
 }
 
 

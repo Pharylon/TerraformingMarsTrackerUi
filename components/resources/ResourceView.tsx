@@ -26,7 +26,7 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
     if (timeout) {
       window.clearTimeout(timeout);
     }
-    setTimeout(window.setTimeout(() => sendUpdate(), 1000));
+    setTimeout(window.setTimeout(() => sendUpdate(), 1500));
   }, [amount]);
 
   const sendUpdate = () => {
@@ -80,7 +80,7 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
         ) : (
           <View><Text style={{height: 50, width: 60, fontSize: 30, overflow: "visible", zIndex: 1000, textAlign: "right"}} >{(diff > 0 ? "+"  : "") + diff}</Text></View>
         )} */}
-        <Image style={{height: 50, width: 50}} source={props.image}/>
+        <Image style={{height: 70, width: 70}} source={props.image}/>
         </View>
       
       <ProductionLine resource={props.resource}

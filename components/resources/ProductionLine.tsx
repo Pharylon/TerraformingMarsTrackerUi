@@ -54,7 +54,7 @@ const ProductionLine = (props: { resource: Resource, gameCode: string, canEdit: 
           props.canEdit && (
             
             <Pressable hitSlop={20} style={styles.pressableStyle} onPress={incrementAmount} onLongPress={incrementAmountBy10} >
-            <Ionicons color={"orange"} name="add" size={32} />
+            <Ionicons color={"orange"} name="add" size={40} />
           </Pressable>
           )
         }
