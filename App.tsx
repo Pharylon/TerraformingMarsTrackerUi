@@ -51,59 +51,51 @@ const myTheme = createTheme({
   mode: 'dark',
 });
 
-function HomeScreen({ navigation }) {
+function HomeScreen(props: { navigation: any }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Main goBack={() => navigation.goBack()} navigateTo={navigation.navigate} />
+        <Main goBack={() => props.navigation.goBack()} navigateTo={props.navigation.navigate} />
       </ImageBackground>
     </View>
   );
 }
 
-function GameMenuNav({ navigation }) {
+function GameMenuNav(props: { navigation: any }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <GameMenu goBack={() => navigation.goBack()} navigateTo={navigation.navigate} />
+        <GameMenu goBack={() => props.navigation.goBack()} navigateTo={props.navigation.navigate} />
       </ImageBackground>
     </View>
   );
 }
 
-function StartGameNav({ navigation }) {
+function StartGameNav(props: { navigation: any }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <StartGameView goBack={() => navigation.goBack()} navigateTo={navigation.navigate} />
+        <StartGameView goBack={() => props.navigation.goBack()} navigateTo={props.navigation.navigate} />
       </ImageBackground>
     </View>
   );
 }
 
-function JoinGameNav({ navigation }) {
+function JoinGameNav(props: { navigation: any }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <JoinGameView goBack={() => navigation.goBack()} navigateTo={navigation.navigate} />
+        <JoinGameView goBack={() => props.navigation.goBack()} navigateTo={props.navigation.navigate} />
       </ImageBackground>
     </View>
   );
 }
 
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={styles.menu}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
-
-function UserNameNavigation({ navigation }) {
+function UserNameNavigation(props: { navigation: any }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <UserName close={() => navigation.goBack()} />
+        <UserName close={() => props.navigation.goBack()} />
       </ImageBackground>
     </View>
   );

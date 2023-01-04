@@ -5,12 +5,17 @@ import { UpdateModel } from "../state/UpdateModel";
 import { getUserId } from "../state/UserState";
 import Constants from "expo-constants";
 
+let userId = "";
+
 const base_uri = Constants.expoConfig?.extra?.apiUrl || "UNKNOWN";
-console.log("Base_URI", JSON.stringify(Constants.expoConfig?.extra));
+console.log("Base_URI", base_uri);
+
+
 
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("http://192.168.0.219:33602/tfmHub")
-    // .withUrl(base_uri + "/tfmHub")
+    // .withUrl("http://192.168.0.219:33602/tfmHub")
+    // .withUrl("https://tfmtracker.azurewebsites.net/tfmHub")
+    .withUrl(base_uri + "/tfmHub")
     .withAutomaticReconnect()
     .configureLogging(signalR.LogLevel.Information)
     .build();

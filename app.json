@@ -1,9 +1,5 @@
 {
   "expo": {
-    "anroidStatusBar": {
-      "backgroundColor": "black",
-      "translucent": false
-    },
     "name": "TerraformingMarsTracker",
     "slug": "terraforming-mars-tracker",
     "version": "1.0.0",
@@ -37,7 +33,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "cee5d31d-61cc-4d1f-8ffd-35e54f6ce089",
+        "projectId": "cee5d31d-61cc-4d1f-8ffd-35e54f6ce089"
       }
     }
   }

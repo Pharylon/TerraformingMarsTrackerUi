@@ -1,6 +1,5 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { BoardState } from '../state/BoardState';
-import ResourceCard from './resources/ResourceCard';
 import Tr from './resources/TR';
 import { Ready, ReadyToProduce } from '../Connections/SignalR';
 import ProduceButton from './ProduceButton';

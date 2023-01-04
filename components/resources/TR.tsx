@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { RefreshControlBase, StyleSheet, Text, View, Vibration, Pressable } from 'react-native';
-import Ionicons, {IconProps} from '@expo/vector-icons/Ionicons';
+import Ionicons  from '@expo/vector-icons/Ionicons';
 import styles from "../../Styles"
 import { BoardState, gameStateAtom, playerNumberState, Resource } from "../../state/BoardState"
 import { useRecoilState } from 'recoil';
