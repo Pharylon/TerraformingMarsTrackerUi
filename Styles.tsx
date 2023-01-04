@@ -5,22 +5,21 @@ const styles = StyleSheet.create({
     width: "40%",
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     display: 'flex',
     borderColor: 'black',
     borderWidth: 2,
-    marginBottom: 10,
-    flexDirection: "column"
+    flexDirection: "row",    
+    marginBottom: 20
   },
   resourceLine: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: 'center',
     justifyContent: 'space-around',
-    width: "100%"
   },
   resourceText: {
-    fontSize: 32,
+    fontSize: 20,
     color: "black"
   },
   pressableStyle: {
@@ -32,14 +31,15 @@ const styles = StyleSheet.create({
     color: "black"
   },
   production: {
-    backgroundColor: "rgba(255, 88, 0, 1)",
-    width: "100%",
+    // backgroundColor: "rgba(255, 88, 0, .5)",
     display: "flex",
-    justifyContent: "space-around",
-    flexDirection: "row"
+    justifyContent: "space-between",
+    flexDirection: "column",
+    alignItems: 'center',
   },
   productionText: {
-    fontSize: 22
+    fontSize: 20,
+    color: "orange"
   },
   tr: {
     width: "100%",
@@ -50,6 +50,13 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     marginBottom: 10,
+  },
+  trResourceLine: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: "100%"
   },
 });
 

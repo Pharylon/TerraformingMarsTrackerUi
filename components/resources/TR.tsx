@@ -49,7 +49,7 @@ const Tr = (props: {tr: number, gameCode: string, canEdit: boolean}) => {
   }
   return (
     <View style={styles.tr}>
-      <View style={styles.resourceLine}>
+      <View style={styles.trResourceLine}>
         {
           props.canEdit && (
             <Pressable hitSlop={20} style={styles.pressableStyle} onPress={decrementAmount} onLongPress={decrementAmountBy10}>

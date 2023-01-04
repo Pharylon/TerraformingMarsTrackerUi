@@ -45,20 +45,24 @@ const ProductionLine = (props: { resource: Resource, gameCode: string, canEdit: 
     setAmount(amount - 10);
     Vibration.vibrate(5);
   }
+  // return (
+  //   <View><Text style={styles.productionText}>{amount}</Text></View>
+  // );
   return (
     <View style={styles.production}>
       {
           props.canEdit && (
-            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={decrementAmount} onLongPress={decrementAmountBy10}>
-              <Ionicons style={styles.inoniconStyle} name="remove" size={32} />
-            </Pressable>
+            
+            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={incrementAmount} onLongPress={incrementAmountBy10} >
+            <Ionicons color={"orange"} name="add" size={32} />
+          </Pressable>
           )
         }
         <Text style={styles.productionText}>{amount}</Text>
         {
           props.canEdit && (
-            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={incrementAmount} onLongPress={incrementAmountBy10} >
-              <Ionicons style={styles.inoniconStyle} name="add" size={32} />
+            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={decrementAmount} onLongPress={decrementAmountBy10}>
+              <Ionicons color="orange"  name="remove" size={32} />
             </Pressable>
           )
         }

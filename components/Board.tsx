@@ -9,6 +9,9 @@ import { Asset, useAssets } from 'expo-asset';
 const mc = require("../assets/MC.png");
 const steel = require("../assets/Steel.png");
 const plants = require("../assets/Plants.png");
+const titanium = require("../assets/Titanium.png");
+const heat = require("../assets/Heat.png");
+const energy = require("../assets/Energy.png");
 
 const Board = (props: {playerState: BoardState, gameCode: string, userId: string, gameStarted: boolean}) => {
   const canEdit = props.userId === props.playerState.player.playerId;
@@ -29,37 +32,33 @@ const Board = (props: {playerState: BoardState, gameCode: string, userId: string
         resourceName="Steel"
         image={steel}
         />
-        <ResourceCard 
+        <ResourceView 
         resource={props.playerState.titanium } 
         gameCode={props.gameCode} 
         canEdit={canEdit}
         resourceName="Titanium"
-        iconName={"md-star"}
-        iconColor="gold"
+        image={titanium}
         />
-        <ResourceCard 
+        <ResourceView 
         resource={props.playerState.plants } 
         gameCode={props.gameCode} 
         canEdit={canEdit}
         resourceName="Plants"
-        iconName={"md-leaf"}
-        iconColor="green"
+        image={plants}
         />
-        <ResourceCard 
+        <ResourceView 
         resource={props.playerState.energy } 
         gameCode={props.gameCode} 
         canEdit={canEdit}
         resourceName="Energy"
-        iconName={"md-flash"}
-        iconColor="purple"
+        image={energy}
         />
-        <ResourceCard 
+        <ResourceView 
         resource={props.playerState.heat} 
         gameCode={props.gameCode} 
         canEdit={canEdit}
         resourceName="Heat"
-        iconName={"md-flame"}
-        iconColor="red"
+        image={heat}
         /> 
         <View style={styles.lastRow}>
         <Tr

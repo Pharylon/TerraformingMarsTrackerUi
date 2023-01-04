@@ -56,22 +56,24 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
       <View style={styles.resourceLine}>
         {
           props.canEdit && (
-            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={decrementAmount} onLongPress={decrementAmountBy10}>
-              <Ionicons style={styles.inoniconStyle} name="remove" size={32} />
+            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={incrementAmount} onLongPress={incrementAmountBy10} >
+              <Ionicons style={styles.inoniconStyle} name="add" size={32} />
             </Pressable>
           )
         }
         <Text style={styles.resourceText}>{amount}</Text>
         {
           props.canEdit && (
-            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={incrementAmount} onLongPress={incrementAmountBy10} >
-              <Ionicons style={styles.inoniconStyle} name="add" size={32} />
-            </Pressable>
+            
+            <Pressable hitSlop={20} style={styles.pressableStyle} onPress={decrementAmount} onLongPress={decrementAmountBy10}>
+            <Ionicons style={styles.inoniconStyle} name="remove" size={32} />
+          </Pressable>
           )
         }
 
       </View>
-      <Image style={{height: 50, width: 50}} source={props.image}/>
+      <View><Image style={{height: 50, width: 50}} source={props.image}/></View>
+      
       <ProductionLine resource={props.resource}
         gameCode={props.gameCode}
         canEdit={props.canEdit}
