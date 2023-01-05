@@ -76,7 +76,7 @@ const Board = (props: {playerState: BoardState, gameCode: string, userId: string
           )
         }
         {
-          !props.gameStarted && (
+          canEdit && !props.gameStarted && (
                 <StartGameButton boardState={props.playerState} gameCode={props.gameCode} />
           )
         }

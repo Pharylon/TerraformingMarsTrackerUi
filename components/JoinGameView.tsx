@@ -1,6 +1,6 @@
-import { Button, Input } from '@rneui/themed';
+import { Input } from '@rneui/themed';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { useRecoilState } from 'recoil';
 import { JoinGame, StartGame } from '../Connections/SignalR';
 import { gameStateAtom } from '../state/BoardState';
@@ -17,7 +17,7 @@ const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: stri
   return (
     <View style={styles.container} >
       <View style={styles.inner}>
-          <Text style={styles.label}>{"Join A Game."}</Text>
+          <Text style={styles.label}>{"Join a Game."}</Text>
           <Input autoCapitalize='characters' placeholder='Game Code' style={{margin: "auto", width: "80%"}} value={gameCodeInput} onChangeText={setGameCodeInput} />
           <Button title='Join Game' onPress={joinGame}></Button>
           <Text style={styles.label2}>{"Join a game created by someone else"}</Text>
