@@ -17,8 +17,8 @@ const GameMenu = (props: {goBack: () => void, navigateTo: (destination: string) 
   
   return (
     <View style={styles.container} >
-      <Button title={"Start Game"} color="purple" onPress={() => props.navigateTo("Start Game")}/>
-      <Button title={"Join Game"} color="purple"  onPress={() => props.navigateTo("Join Game")}/>
+      <Button title={"Start Game"} onPress={() => props.navigateTo("Start Game")}/>
+      <Button title={"Join Game"} onPress={() => props.navigateTo("Join Game")}/>
     </View>    
   );
 };
