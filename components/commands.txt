@@ -1,0 +1,2 @@
+eas update --branch preview --message bar
+eas build --platform ios/android/all
