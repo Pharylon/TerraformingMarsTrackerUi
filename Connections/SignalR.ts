@@ -13,18 +13,13 @@ console.log("Base_URI", base_uri);
 
 
 let connection = new signalR.HubConnectionBuilder()
-    // .withUrl("http://192.168.0.219:33602/tfmHub")
-    // .withUrl("https://tfmtracker.azurewebsites.net/tfmHub")
     .withUrl(base_uri + "/tfmHub")
     .withAutomaticReconnect()
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
-console.log("Hub Connection", connection.connectionId);
-
 connection.on("send", data => {
     console.log(data);
-
 });
 
 connection.on("gameupdate", data => {
@@ -40,37 +35,64 @@ connection.on("errormessage", data => {
 
 async function Initalize(){
     userId = await getUserId();
-    console.log("UserID", userId);
-    console.log("Conneting to Hub");
     try{
         await connection.start();
-        // connection.invoke("StartGame", "foo");
-        console.log("Hub Connection2", connection.connectionId);
     }
     catch(e){
         console.log("Entering Error");
         console.error(e);
+        setRecoil(errorMessageAtom, "Error connecting to hub");
     }
 }
 
 Initalize();
 
 export async function StartGame(gameCode: string, userName: string){
-    await connection.invoke("StartGame", gameCode, userName, userId);
+    try{
+        await connection.invoke("StartGame", gameCode, userName, userId);
+    }
+    catch(e){
+        setRecoil(errorMessageAtom, "Error sending StartGame state");
+    }
+    
 }
 
 export async function JoinGame(gameCode: string, userName: string){
-    await connection.invoke("JoinGame", gameCode, userName, userId);
+    try{
+        await connection.invoke("JoinGame", gameCode, userName, userId);
+    }
+    catch(e){
+        setRecoil(errorMessageAtom, "Error sending JoinGame state");
+    }
+    
 }
 
-export function UpdateGame(gameState: UpdateModel){
-    connection.invoke("UpdateGame", gameState, userId);
+export async function UpdateGame(updateModel: UpdateModel){
+    try{
+       await connection.invoke("UpdateGameById", updateModel, userId);
+    }
+    catch(e){
+        setRecoil(errorMessageAtom, "Error sending UpdateGame state");
+    }
+    
 }
 
-export function Ready(gameCode: string){
-    connection.invoke("Ready", gameCode, userId);
+export async function Ready(gameCode: string){
+    try{
+        await connection.invoke("Ready", gameCode, userId);
+    }
+    catch(e){
+        setRecoil(errorMessageAtom, "Error sending Ready State");
+    }
+    
 }
 
-export function ReadyToProduce(gameCode: string){
-    connection.invoke("ReadyToProduce", gameCode, userId);
+export async function ReadyToProduce(gameCode: string){
+    try{
+        await connection.invoke("ReadyToProduce", gameCode, userId);
+    }
+    catch(e){
+        setRecoil(errorMessageAtom, "Error sending ReadyToProduce");
+    }
+    
 }

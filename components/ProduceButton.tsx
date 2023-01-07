@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { ReadyToProduce } from '../Connections/SignalR';
 
-const ProduceButton = (props: {rtp: boolean, gameCode: string}) => {
+const ProduceButton = (props: {rtp: boolean, gameId: string}) => {
   const [amReadyToProduce, setReadyToProduce] = useState(false);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const ProduceButton = (props: {rtp: boolean, gameCode: string}) => {
 
   function productionTime(){
     setReadyToProduce(true);
-    ReadyToProduce(props.gameCode);
+    ReadyToProduce(props.gameId);
   }
   return (
     <Button disabled={amReadyToProduce} onPress={productionTime} title="Ready to Produce"></Button>

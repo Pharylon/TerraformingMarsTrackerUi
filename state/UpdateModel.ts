@@ -1,5 +1,5 @@
 export interface UpdateModel{
-  gameCode: string;
+  gameId: string;
   resource: string;
   adjustmentAmount: number;
   production: boolean;

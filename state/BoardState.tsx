@@ -25,6 +25,7 @@ export interface Resource {
 
 
 export interface GameState {
+  id: string,
   started: boolean,
   gameCode: string,
   boards: BoardState[],
@@ -40,6 +41,7 @@ export function getEmptyGameState (playerId: string): BoardState {
       playerId: "",
       playerName: "",
       readyToProduce: false,
+      readyToStart: false,
     },
     megaCredits: {
       amount: 20,

@@ -9,7 +9,7 @@ import { UpdateGame } from '../../Connections/SignalR';
 import ProductionLine from './ProductionLine';
 
 
-const Tr = (props: {tr: number, gameCode: string, canEdit: boolean}) => {
+const Tr = (props: {tr: number, gameId: string, canEdit: boolean}) => {
   const [tr, setTr] = useState(0);
   const [timeout, setTimeout] = useState(0);
   useEffect(() => {
@@ -26,7 +26,7 @@ const Tr = (props: {tr: number, gameCode: string, canEdit: boolean}) => {
   const sendUpdate = () => {
     if (tr !== props.tr) {
       UpdateGame({
-        gameCode: props.gameCode,
+        gameId: props.gameId,
         resource: "tr",
         adjustmentAmount: tr - props.tr,
         production: false

@@ -7,7 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 let timeout = 0;
 
-const ProductionLine = (props: { resource: Resource, gameCode: string, canEdit: boolean, resourceName: string }) => {
+const ProductionLine = (props: { resource: Resource, gameId: string, canEdit: boolean, resourceName: string }) => {
   const [amount, setAmount] = useState(props.resource.production);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const ProductionLine = (props: { resource: Resource, gameCode: string, canEdit: 
   const sendUpdate = () => {
     if (amount !== props.resource.production) {
       UpdateGame({
-        gameCode: props.gameCode,
+        gameId: props.gameId,
         resource: props.resourceName,
         adjustmentAmount: amount - props.resource.production,
         production: true,        

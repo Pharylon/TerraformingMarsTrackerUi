@@ -1,6 +1,6 @@
 import { Input } from '@rneui/themed';
-import { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, View, Button, AppState } from 'react-native';
 import { useRecoilState } from 'recoil';
 import { JoinGame, StartGame } from '../Connections/SignalR';
 import { gameStateAtom } from '../state/BoardState';
@@ -10,10 +10,31 @@ const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: stri
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
   const [userName, setUserName] = useRecoilState(userState);
   const [gameCodeInput, setGameCodeInput] = useState("");
+  const appState = useRef(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", nextAppState => {
+      if ( appState.current.match(/inactive|background/) && nextAppState === "active" && gameState && gameState.gameCode) 
+      {
+        //App has come to the foreground
+        JoinGame(gameState.gameCode, userName);
+      }
+
+      appState.current = nextAppState;
+      console.log("AppState", appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, [])
+
   async function joinGame(){
     await JoinGame(gameCodeInput, userName);
     props.navigateTo("Game");
   }
+
+
   return (
     <View style={styles.container} >
       <View style={styles.inner}>

@@ -14,7 +14,7 @@ const titanium = require("../assets/Titanium.png");
 const heat = require("../assets/Heat.png");
 const energy = require("../assets/Energy.png");
 
-const Board = (props: {playerState: BoardState, gameCode: string, userId: string, gameStarted: boolean}) => {
+const Board = (props: {playerState: BoardState, gameId: string, userId: string, gameStarted: boolean}) => {
   const canEdit = props.userId === props.playerState.player.playerId;
 
 
@@ -22,49 +22,49 @@ const Board = (props: {playerState: BoardState, gameCode: string, userId: string
     <View style={styles.board}>
       <ResourceView 
         resource={props.playerState.megaCredits} 
-        gameCode={props.gameCode} 
+        gameId={props.gameId} 
         canEdit={props.userId === props.playerState.player.playerId}
         resourceName="MegaCredits"
         image={mc}
         />
         <ResourceView 
         resource={props.playerState.steel} 
-        gameCode={props.gameCode} 
+        gameId={props.gameId} 
         canEdit={canEdit}
         resourceName="Steel"
         image={steel}
         />
         <ResourceView 
         resource={props.playerState.titanium } 
-        gameCode={props.gameCode} 
+        gameId={props.gameId} 
         canEdit={canEdit}
         resourceName="Titanium"
         image={titanium}
         />
         <ResourceView 
         resource={props.playerState.plants } 
-        gameCode={props.gameCode} 
+        gameId={props.gameId} 
         canEdit={canEdit}
         resourceName="Plants"
         image={plants}
         />
         <ResourceView 
         resource={props.playerState.energy } 
-        gameCode={props.gameCode} 
+        gameId={props.gameId} 
         canEdit={canEdit}
         resourceName="Energy"
         image={energy}
         />
         <ResourceView 
         resource={props.playerState.heat} 
-        gameCode={props.gameCode} 
+        gameId={props.gameId} 
         canEdit={canEdit}
         resourceName="Heat"
         image={heat}
         /> 
         <View style={styles.lastRow}>
         <Tr
-          gameCode={props.gameCode}
+          gameId={props.gameId}
           canEdit={canEdit}
           tr={props.playerState.terraformRating}
         />
@@ -72,12 +72,12 @@ const Board = (props: {playerState: BoardState, gameCode: string, userId: string
         <View style={styles.lastRow}>
         {
           canEdit && props.gameStarted &&  (
-            <ProduceButton gameCode={props.gameCode} rtp={props.playerState.player.readyToProduce} />
+            <ProduceButton gameId={props.gameId} rtp={props.playerState.player.readyToProduce} />
           )
         }
         {
           canEdit && !props.gameStarted && (
-                <StartGameButton boardState={props.playerState} gameCode={props.gameCode} />
+                <StartGameButton boardState={props.playerState} gameId={props.gameId} />
           )
         }
         </View>

@@ -54,7 +54,7 @@ const GameBoards = () => {
       <TabView value={index} onChange={setIndex} animationType="spring">
         {sortedBoards && sortedBoards.map((board, index) =>
           <TabView.Item key={index} style={{ width: '100%' }}>
-            <Board userId={userId} gameCode={gameState.gameCode} playerState={board} gameStarted={gameState.started} />
+            <Board userId={userId} gameId={gameState.id} playerState={board} gameStarted={gameState.started} />
           </TabView.Item>
         )
         }

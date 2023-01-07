@@ -6,7 +6,7 @@ import { Ready } from '../Connections/SignalR';
 import { BoardState, gameStateAtom } from '../state/BoardState';
 import { getUserId } from '../state/UserState';
 
-const StartGameButton = (props: {boardState: BoardState, gameCode: string}) => {
+const StartGameButton = (props: {boardState: BoardState, gameId: string}) => {
   // const [gameState, setGameState] = useRecoilState(gameStateAtom);
   // const [userId, setUserId] = useState("");
 
@@ -38,7 +38,7 @@ const StartGameButton = (props: {boardState: BoardState, gameCode: string}) => {
 
   return (
     <View>
-      <Button disabled={props.boardState.player.readyToStart} onPress={() => Ready(props.gameCode)} title={"Ready To Start"} />
+      <Button disabled={props.boardState.player.readyToStart} onPress={() => Ready(props.gameId)} title={"Ready To Start"} />
     </View>
   );
 };

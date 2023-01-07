@@ -10,7 +10,7 @@ import ProductionLine from './ProductionLine';
 
 
 
-const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: boolean, resourceName: string, image: any }) => {
+const ResourceCard = (props: { resource: Resource, gameId: string, canEdit: boolean, resourceName: string, image: any }) => {
   const [timeout, setTimeout] = useState(0);
   const [prodDiff, setProdDiff] = useState(0);
   if (!props.resource){
@@ -32,7 +32,7 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
   const sendUpdate = () => {
     if (amount !== props.resource.amount) {
       UpdateGame({
-        gameCode: props.gameCode,
+        gameId: props.gameId,
         resource: props.resourceName,
         adjustmentAmount: amount - props.resource.amount,
         production: false
@@ -84,7 +84,7 @@ const ResourceCard = (props: { resource: Resource, gameCode: string, canEdit: bo
         </View>
       
       <ProductionLine resource={props.resource}
-        gameCode={props.gameCode}
+        gameId={props.gameId}
         canEdit={props.canEdit}
         resourceName={props.resourceName} />
 
