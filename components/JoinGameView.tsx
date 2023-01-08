@@ -14,20 +14,20 @@ const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: stri
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", nextAppState => {
-      if ( appState.current.match(/inactive|background/) && nextAppState === "active" && gameState && gameState.gameCode) 
+      if (appState.current.match(/inactive|background/) && nextAppState === "active" && gameState && gameState.gameCode) 
       {
         //App has come to the foreground
-        JoinGame(gameState.gameCode, userName);
+        console.log("App to foregrand, reconnection");
+          // JoinGame(gameState.gameCode, userName);        
       }
 
       appState.current = nextAppState;
-      console.log("AppState", appState.current);
     });
 
     return () => {
       subscription.remove();
     };
-  }, [])
+  }, [gameState])
 
   async function joinGame(){
     await JoinGame(gameCodeInput, userName);

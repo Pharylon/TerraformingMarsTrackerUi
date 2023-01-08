@@ -11,6 +11,7 @@ const StartGameView = (props: {goBack: () => void, navigateTo: (destination: str
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
   const [userName, setUserName] = useRecoilState(userState);
   const [gameCodeInput, setGameCodeInput] = useState("");
+  const [showLoadSpinner, setShowLoadSpinner] = useState(true);
   async function startGame(){
     if (gameCodeInput){
       await StartGame(gameCodeInput, userName);
@@ -34,6 +35,13 @@ const StartGameView = (props: {goBack: () => void, navigateTo: (destination: str
 
   return (
     <View style={styles.container} >
+      {
+        showLoadSpinner && (
+          <View>
+            
+          </View>
+        )
+      }
       <View style={styles.inner}>
           <Text style={styles.label}>{"Start a New Game."}</Text>
           <Input autoCapitalize='characters' placeholder={"Game Code"} style={{margin: "auto", width: "80%"}} value={gameCodeInput} onChangeText={setGameCodeInputClean} />

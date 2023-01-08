@@ -23,7 +23,6 @@ connection.on("send", data => {
 });
 
 connection.on("gameupdate", data => {
-    console.log("GameUpdate", JSON.stringify(data));
     setRecoil(gameStateAtom, data)
 });
 
@@ -31,6 +30,15 @@ connection.on("errormessage", data => {
     console.log("errormessage", data);
     setRecoil(errorMessageAtom, data)
 });
+
+connection.onreconnecting(() => {
+    const gameState = getRecoil(gameStateAtom);
+    console.log("Reconnection");
+    if (gameState && gameState.gameCode){
+        console.log("Rejoining");
+        JoinGame(gameState.gameCode, userId);
+    }
+})
 
 
 async function Initalize(){
@@ -61,8 +69,9 @@ export async function JoinGame(gameCode: string, userName: string){
     try{
         await connection.invoke("JoinGame", gameCode, userName, userId);
     }
-    catch(e){
+    catch(e: any){
         setRecoil(errorMessageAtom, "Error sending JoinGame state");
+        console.error(e);
     }
     
 }
