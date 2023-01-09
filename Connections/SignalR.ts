@@ -102,6 +102,15 @@ export async function ReadyToProduce(gameCode: string){
     }
     catch(e){
         setRecoil(errorMessageAtom, "Error sending ReadyToProduce");
+    }    
+}
+
+
+export async function LeaveGame(gameId: string){
+    try{
+        await connection.invoke("LeaveGame", gameId, userId);
     }
-    
+    catch(e){
+        setRecoil(errorMessageAtom, "Error sending ReadyToProduce");
+    }
 }

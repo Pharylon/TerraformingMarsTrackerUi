@@ -19,6 +19,7 @@ import JoinGameView from './components/JoinGameView';
 import TabTest from './components/TabTest';
 import ErrorOverlay from './components/ErrorOverlay';
 import { gameStateAtom } from './state/BoardState';
+import LeaveGameOverlay from './components/LeaveGameOverlay';
 
 
 
@@ -124,13 +125,14 @@ export default function AppInner() {
         <Drawer.Navigator initialRouteName="Game" screenOptions={({ navigation }) => ({
           headerLeft: props => <Ionicons name="reorder-three-outline" size={40} color="white" onPress={navigation.toggleDrawer} />,
         })} >
-          <Drawer.Screen name="Game" component={HomeScreen} options={{title: "Game " + gameState?.gameCode}}/>
+          <Drawer.Screen name="Game" component={HomeScreen} options={{title: "Game " + (gameState?.gameCode ? gameState.gameCode : "")}}/>
           <Drawer.Screen name="Set User Name" component={UserNameNavigation} />
           <Drawer.Screen name="Game Menu" component={GameMenuNav} />
           <Drawer.Screen options={{ drawerItemStyle: { display: "none" } }} name="Start Game" component={StartGameNav} />
           <Drawer.Screen options={{ drawerItemStyle: { display: "none" } }} name="Join Game" component={JoinGameNav} />
         </Drawer.Navigator>
         <ErrorOverlay />
+        <LeaveGameOverlay/>
         <StatusBar backgroundColor='black' style="light" />
       </NavigationContainer>
     </ThemeProvider>

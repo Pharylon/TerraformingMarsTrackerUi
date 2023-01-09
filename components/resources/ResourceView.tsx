@@ -26,7 +26,7 @@ const ResourceCard = (props: { resource: Resource, gameId: string, canEdit: bool
     if (timeout) {
       window.clearTimeout(timeout);
     }
-    setTimeout(window.setTimeout(() => sendUpdate(), 1500));
+    setTimeout(window.setTimeout(() => sendUpdate(), 3000));
   }, [amount]);
 
   const sendUpdate = () => {

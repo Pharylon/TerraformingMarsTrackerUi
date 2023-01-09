@@ -1,24 +1,26 @@
-import { Input } from '@rneui/themed';
+import { Input, Overlay } from '@rneui/themed';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useRecoilState } from 'recoil';
-import { StartGame } from '../Connections/SignalR';
+import { LeaveGame, StartGame } from '../Connections/SignalR';
 import { gameStateAtom } from '../state/BoardState';
-import { userState } from '../state/UserState';
+import { showLeaveGameAtom, userState } from '../state/UserState';
 
 const GameMenu = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
   const [gameState, setGameState] = useRecoilState(gameStateAtom);
-  const [userName, setUserName] = useRecoilState(userState);
-  const [gameCodeInput, setGameCodeInput] = useState("");
-  function startGame(){
-    StartGame(gameCodeInput, userName);
-  }
+  const [showLeaveOverlay, setShowLeaveOverlay] = useRecoilState(showLeaveGameAtom);
 
-  
+
   return (
     <View style={styles.container} >
       <Button title={"Start Game"} onPress={() => props.navigateTo("Start Game")}/>
       <Button title={"Join Game"} onPress={() => props.navigateTo("Join Game")}/>
+      {
+        gameState && gameState.gameCode && (
+          <Button color={"red"} title={"Leave Game"} onPress={() => setShowLeaveOverlay(true)}/>
+        )
+      }
+      
     </View>    
   );
 };

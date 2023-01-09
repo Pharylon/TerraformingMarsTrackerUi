@@ -8,6 +8,11 @@ export const userState = atom<string>(({
   default: "",
 }))
 
+export const showLeaveGameAtom = atom<boolean>(({
+  key: 'showLeaveGame',
+  default: false,
+}))
+
 
 export async function getUserId(){
   let userId = await AsyncStorage.getItem('@user_id');
