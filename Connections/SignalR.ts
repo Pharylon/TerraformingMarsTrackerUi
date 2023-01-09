@@ -31,11 +31,11 @@ connection.on("errormessage", data => {
     setRecoil(errorMessageAtom, data)
 });
 
-connection.onreconnecting(() => {
+connection.onreconnected(() => {
     const gameState = getRecoil(gameStateAtom);
     console.log("Reconnection");
     if (gameState && gameState.gameCode){
-        console.log("Rejoining");
+        console.log("Reconnecting to game due to lost game state");
         JoinGame(gameState.gameCode, userId);
     }
 })
