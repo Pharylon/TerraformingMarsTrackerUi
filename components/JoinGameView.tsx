@@ -18,7 +18,7 @@ const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: stri
       {
         //App has come to the foreground
         console.log("App to foregrand, reconnection");
-          // JoinGame(gameState.gameCode, userName);        
+          JoinGame(gameState.gameCode, userName, true);        
       }
 
       appState.current = nextAppState;
@@ -30,7 +30,7 @@ const JoinGameView = (props: {goBack: () => void, navigateTo: (destination: stri
   }, [gameState])
 
   async function joinGame(){
-    await JoinGame(gameCodeInput, userName);
+    await JoinGame(gameCodeInput, userName, false);
     props.navigateTo("Game");
   }
 

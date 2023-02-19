@@ -13,6 +13,8 @@ import Board from './Board';
 import TabTest from './TabTest';
 import { Button } from '@rneui/base';
 import TurnSound from "./TurnSound";
+import { useKeepAwake } from 'expo-keep-awake';
+
 
 
 const Main = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
@@ -29,6 +31,7 @@ const Main = (props: {goBack: () => void, navigateTo: (destination: string) => v
   
   return(
     <View style={styles.container}>
+      useKeepAwake();
       {!userNameState && <UserName/>}
       {
         showGameMenu && <GameMenu goBack={() => props.goBack()} navigateTo={props.navigateTo} />

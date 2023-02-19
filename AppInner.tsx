@@ -104,6 +104,17 @@ function UserNameNavigation(props: { navigation: any }) {
   );
 }
 
+function About(props: { navigation: any }) {
+  return (
+    <View style={styles.container}>
+      <Text style={{color: "white", margin: 20}}>The Terraforming Mars Multiplayer Resource Tracker was made by Zachary Shuford</Text>
+      <Text style={{color: "white", margin: 20}}>v. 1.2.1</Text>
+    </View>
+  );
+}
+
+
+
 
 
 const Drawer = createDrawerNavigator();
@@ -128,6 +139,7 @@ export default function AppInner() {
           <Drawer.Screen name="Game" component={HomeScreen} options={{title: "Game " + (gameState?.gameCode ? gameState.gameCode : "")}}/>
           <Drawer.Screen name="Set User Name" component={UserNameNavigation} />
           <Drawer.Screen name="Game Menu" component={GameMenuNav} />
+          <Drawer.Screen name="About" component={About} />
           <Drawer.Screen options={{ drawerItemStyle: { display: "none" } }} name="Start Game" component={StartGameNav} />
           <Drawer.Screen options={{ drawerItemStyle: { display: "none" } }} name="Join Game" component={JoinGameNav} />
         </Drawer.Navigator>

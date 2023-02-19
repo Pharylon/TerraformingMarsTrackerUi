@@ -65,12 +65,14 @@ export async function StartGame(gameCode: string, userName: string){
     
 }
 
-export async function JoinGame(gameCode: string, userName: string){
+export async function JoinGame(gameCode: string, userName: string, suppressError: boolean){
     try{
         await connection.invoke("JoinGame", gameCode, userName, userId);
     }
     catch(e: any){
-        setRecoil(errorMessageAtom, "Error sending JoinGame state");
+        if (!suppressError){
+            setRecoil(errorMessageAtom, "Error sending JoinGame state");
+        }
         console.error(e);
     }
     
