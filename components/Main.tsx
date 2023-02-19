@@ -18,6 +18,7 @@ import { useKeepAwake } from 'expo-keep-awake';
 
 
 const Main = (props: {goBack: () => void, navigateTo: (destination: string) => void}) => {
+  useKeepAwake();
   const [playerNumber, setPlayerNumber] = useRecoilState(playerNumberState);
   const [userNameState, setUserNameState] = useRecoilState(userState);
   const [currentPlayerNumber, setCurrentPlayerNumber] = useState(0);
@@ -31,7 +32,6 @@ const Main = (props: {goBack: () => void, navigateTo: (destination: string) => v
   
   return(
     <View style={styles.container}>
-      useKeepAwake();
       {!userNameState && <UserName/>}
       {
         showGameMenu && <GameMenu goBack={() => props.goBack()} navigateTo={props.navigateTo} />
